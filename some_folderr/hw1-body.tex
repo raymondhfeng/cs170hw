@@ -50,6 +50,8 @@ justify your answers.
 \end{enumerate}
 \begin{mdframed}
 	\textbf{Solution} 
+	$$O(12) \in O(\log_2(n)) \in O(2^{\log_2(n)}) \in O(n^{\frac{1}{3}}) \in O(n^{\frac{1}{2}}) \in O(n^3) \in O(2^{\sqrt{n}}) \in O(2^n) \in O(3^n)$$
+	$$3,7,4,2,5,9,8,6,1$$
 \end{mdframed}
 
 
@@ -67,14 +69,43 @@ $\begin{tabu}{r l l}
 (vii) & \log n! & n \log n \\
 \end{tabu}$
 
-\answer{}
+\answer{\\
+i. $$\frac{\ln(n)}{\ln(3)} \in \theta(\frac{\ln(n)}{\ln(4)}) \Rightarrow f \in \theta(g)$$
+ii. $$\lim_{n\to\infty}\frac{4\log(n)}{3n\log(n)}=0$$
+$$f \in O(g)$$
+iii. $$\lim_{n\to\infty}\frac{\sqrt{n}}{(\log(3n))^3}$$
+Take the derivative wrt n of numerator and denominator five times, and L'Hopital gives:
+$$\lim_{n\to\infty}\frac{\sqrt{n}}{48} = \infty \Rightarrow f \in \Omega(g)$$
+iv. $$\forall n \in \mathbb{R}, a*2^n \leq 2^{n+1} \leq b*2^n, a=\frac{1}{4}, b=4$$
+$$f \in \theta(g)$$
+v. 
+For large n.
+$$2\log(\log(\log(n))) \leq \log(\log(n))$$ 
+$$\Rightarrow (\log(\log(n)))^2 \leq \log(n)$$
+$$\Rightarrow \log((\log(n))^{\log(\log(n))}) \leq \log(n)$$
+$$\Rightarrow (\log(n))^{\log(\log(n))} \leq n$$
+$$\Rightarrow g \leq f$$
+$$f \in \Omega(g)$$
+vi. 
+I omit the calculus.
+$$\lim_{n\to\infty}\frac{f}{g} = 0 \Rightarrow f \in O(g)$$
+vii.
+$$(\frac{n}{2})^{\frac{n}{2}} \leq n!$$
+$$\frac{n}{2}(\log(n) - \log(2)) \leq \log(n!)$$
+$$O(n\log(n)) \in O(\log(n!))$$
+$$f \in \Omega(g)$$
+}
 \vspace{2cm}
 
 \item Let $f(\cdot)$ be a function. Consider the equality
 \[\sum_{i=1}^{n}f(i)\ \in \ \Theta(f(n)),\]
 give a function $f_1$ such that the equality holds, and a function $f_2$ such that the equality does not hold.\\
 
-\answer{}
+\answer{
+$$\sum_{i=1}^n2^n = 2^{n+1} \in \theta(2^n)$$
+$$\sum{i=1}^nn = \frac{n(n+1)}{2} \in \theta(n^2)$$
+$$f_1(n) = 2^n, f_2(n) = n$$
+}
 
 \item Prove or disprove: If $f:\N\to\N$ is any positive-valued function,
 then either (1) there exists a constant $c>0$ so that
