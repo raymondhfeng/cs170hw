@@ -1,0 +1,155 @@
+\begin{qunlist}
+\q{$\bigstar$}{Course Syllabus}
+
+Before you answer any of the following questions, please read over the syllabus carefully. The syllabus is pinned on the Piazza site. For each statement below, write \textit{OK} if it is allowed by the course policies and \textit{Not OK} otherwise.
+
+\begin{enumerate}[(a)]
+\item You ask a friend who took CS 170 previously for her homework solutions, some of which overlap with this semester's problem sets. You look at her solutions, then later write them down in your own words.
+\begin{mdframed}
+	\textbf{Solution} Not OK
+\end{mdframed}
+
+\item You had 5 midterms on the same day and are behind on your homework. You decide to ask your classmate, who's already done the homework, for help. He tells you how to do the first three problems.
+\begin{mdframed}
+	\textbf{Solution} Not OK
+\end{mdframed}
+
+\item You look up a problem online to search an algorithm, write it in your words and cite the source.
+\begin{mdframed}
+	\textbf{Solution} Not OK
+\end{mdframed}
+
+\item You were looking up Dijkstra's on the internet, and run into a website with a problem very similar to one on your homework. You read it, including the solution, and then you close the website, write up your solution, and cite the website URL in your homework writeup.
+\begin{mdframed}
+	\textbf{Solution} OK
+\end{mdframed}
+
+\item You are working on the homework in one of the TA's office hours with other people. You hear that student John Doe asked the TA if his solution is correct or not and the TA is explaining it. You join their conversation to understand what John has done.
+\begin{mdframed}
+	\textbf{Solution} OK
+\end{mdframed}
+
+\end{enumerate}
+
+\q{$\bigstar\bigstar$}{Asymptotic Complexity Comparisons}
+
+\begin{enumerate}[(a)]
+\item
+Order the following functions so that $f_i \in O(f_j) \iff i \le j$. Do not
+justify your answers.
+\begin{enumerate}[(i)]
+\item $f_1(n) = 3^{n}$
+\item $f_2(n) = n^{1 \over 3}$
+\item $f_3(n) = 12$
+\item $f_4(n) = 2^{\log_2 n}$
+\item $f_5(n) = \sqrt{n}$
+\item $f_6(n) = 2^n$
+\item $f_7(n) = \log_2 n$
+\item $f_8(n) = 2^{\sqrt n}$
+\item $f_9(n) = n^3$
+\end{enumerate}
+\begin{mdframed}
+	\textbf{Solution} 
+\end{mdframed}
+
+
+\item
+In each of the following, indicate whether $f = O(g)$, $f = \Omega(g)$, or both (in which case $f = \Theta(g)$). \textbf{\textit{Briefly}} justify each of your answers.
+
+$\begin{tabu}{r l l}
+    & f(n) & g(n) \\
+(i) & \log_{3} n & \log_{4} n \\
+(ii) & n \log (n^4) & n^2 \log (n^3) \\
+(iii) & \sqrt[]{n} & (\log n)^3 \\
+(iv) & 2^n & 2^{n+1} \\
+(v) & n & (\log n)^{\log\log n} \\
+(vi) & n + \log n & n + (\log n)^2 \\
+(vii) & \log n! & n \log n \\
+\end{tabu}$
+
+\answer{}
+\vspace{2cm}
+
+\item Let $f(\cdot)$ be a function. Consider the equality
+\[\sum_{i=1}^{n}f(i)\ \in \ \Theta(f(n)),\]
+give a function $f_1$ such that the equality holds, and a function $f_2$ such that the equality does not hold.\\
+
+\answer{}
+
+\item Prove or disprove: If $f:\N\to\N$ is any positive-valued function,
+then either (1) there exists a constant $c>0$ so that
+$f(n) \in O(n^c)$, or (2) there exists a constant $\alpha>1$ so that
+$f(n) \in \Omega(\alpha^n)$.
+
+\answer{}
+  
+\end{enumerate}
+
+
+\q{$\bigstar\bigstar\bigstar$}{Recurrence Relations}
+
+Derive an asymptotic {\em tight} bound for the following $T(n)$. Cite any theorem you use.
+
+\begin{enumerate}[(a)]
+
+\item $T(n)=2\cdot T(\frac{n}{2})$ $+$ $\sqrt n$.
+
+\answer{}
+
+\item $T(n) = T(n-1) + c^n$ for constants $c>0$.
+
+\answer{}
+
+\item $T(n) = 2T(\sqrt{n}) + 3$, and $T(2) = 3$.
+
+\answer{}
+ 
+\end{enumerate}
+
+
+\q{$\bigstar\bigstar\bigstar\bigstar$}{Recurrence Relations Part II}
+
+Solve the following recurrence relations and give a $\Theta$ bound for each of them.
+\begin{enumerate}[(a)]
+\item
+\begin{enumerate}[(i)]
+\item
+$T(n) = 3T(n/4) + 4n^2$
+\item $T(n) = 45T(n/3) + .1n^3$
+\item $T(n) = 2T(\sqrt{n}) + 5$, and $T(2) = 5$. (Hint: this means the recursion tree stops when the problem size is $2$)
+\end{enumerate}
+\item
+\begin{enumerate}[(i)]
+\item Consider the recurrence relation $T(n) = 2T(n/2) + n \log n$. We can't plug it directly into the Master theorem, so solve it by adding the size of each layer.
+
+\textit{Hint: split up the $\log (n/(2^i))$ terms into $\log n - \log (2^i)$, and use the formula for arithmetic series.}
+
+\item A more general version of Master theorem, like the one on \href{https://en.wikipedia.org/wiki/Master_theorem}{Wikipedia}, incorporates this result. The case of the master theorem which applies to this problem is:
+
+\textit{If $T(n) = aT(n/b) + f(n)$ where $a \geq 1$, $b > 1$, and $f(n) = \Theta(n^c \log^k n)$ where $c = \log_b a$, then $T(n) = \Theta(n^c \log^{k+1} n)$. }
+
+Use the general Master theorem to solve the following recurrence relation:
+
+$T(n) = 9T(n/3) + n^2 \log ^3 n$.
+\end{enumerate} 
+\end{enumerate}
+
+\answer{}
+
+\q{$\bigstar\bigstar\bigstar\bigstar$}{Two Sorted Arrays}
+
+You are given two sorted arrays, each of size $n$. Give as efficient an algorithm as possible to find the $k$-th smallest element in the union of the two arrays. What is the running time of your algorithm as a function of $k$ and $n$?
+{\em (You need to give a four-part solution for this problem.)}
+
+\answer{}
+
+
+\q{$\bigstar\bigstar\bigstar\bigstar\bigstar$}{Merged Median} \\
+Given $k$ sorted arrays of length $l$, design an efficient algorithm to finding the median element of all the $n=kl$ elements. Your algorithm should run  asymptotically faster than $O(n)$. Your answer from 5 may be helpful.
+
+{\em (You need to give a four-part solution for this problem.)}
+
+\answer{}
+
+
+\end{qunlist}
