@@ -103,7 +103,7 @@ give a function $f_1$ such that the equality holds, and a function $f_2$ such th
 
 \answer{
 $$\sum_{i=1}^n2^n = 2^{n+1} \in \theta(2^n)$$
-$$\sum{i=1}^nn = \frac{n(n+1)}{2} \in \theta(n^2)$$
+$$\sum{i=1}^nn = \frac{n(n+1)}{2} \in \theta(n^2){\tiny }$$
 $$f_1(n) = 2^n, f_2(n) = n$$
 }
 
@@ -125,15 +125,27 @@ Derive an asymptotic {\em tight} bound for the following $T(n)$. Cite any theore
 
 \item $T(n)=2\cdot T(\frac{n}{2})$ $+$ $\sqrt n$.
 
-\answer{}
+\answer{
+Using the Master Theorem, we have:
+$$a = 2, b = 2, d = \frac{1}{2}$$
+$$T(n) \in \theta(n^{log_{b}(a)}) = \theta(n)$$
+}
 
 \item $T(n) = T(n-1) + c^n$ for constants $c>0$.
 
-\answer{}
+\answer{
+Each call of the function on $n$ recursively calls itself on $n-1$, and then does $c^n$ work. The call $T(1)$ returns 1, and so all the work can be seen as the sum of $c^n$ from 2 to $n$. 
+$$\sum_{i=2}^{n}c^i=\frac{a_1(1-r^n)}{1-r}=\frac{c^2(1-c^{n-1})}{1-c} \in \theta(c^n)$$   
+}
 
 \item $T(n) = 2T(\sqrt{n}) + 3$, and $T(2) = 3$.
 
-\answer{}
+\answer{
+$$T(n) = 2T(\sqrt{n})+3$$
+$$T(n) = 2(2T(\sqrt{\sqrt{n}})+3)+3$$
+Because we are taking the square root of $n$ each time, and we stop when $n=2$, we can think of the recursion as halving the exponent each level deeper. Thus, because $n=2^{log_2(n)}$, the number of halvings before the exponent becomes 1 is $log(log(n))$. Thus:
+$$T(n) = 2^{log(logn)}T(2)+3*\sum_{i=0}^{log(logn)} \in \theta(log(n))$$
+}
  
 \end{enumerate}
 
@@ -143,16 +155,35 @@ Derive an asymptotic {\em tight} bound for the following $T(n)$. Cite any theore
 Solve the following recurrence relations and give a $\Theta$ bound for each of them.
 \begin{enumerate}[(a)]
 \item
+Using the Master theorem, where 
 \begin{enumerate}[(i)]
-\item
-$T(n) = 3T(n/4) + 4n^2$
+\item $T(n) = 3T(n/4) + 4n^2$
+\answer{
+$$a=3, b=4, d=2, d > \log_b(a)$$
+$$T(n) \in \theta(n^2)$$
+}
 \item $T(n) = 45T(n/3) + .1n^3$
+Using the Master theorem, where 
+\answer{
+$$a=45, b=3, d=3, d < \log_b(a)$$
+$$T(n) \in \theta(n^{\log_3(45)})$$
+}
 \item $T(n) = 2T(\sqrt{n}) + 5$, and $T(2) = 5$. (Hint: this means the recursion tree stops when the problem size is $2$)
 \end{enumerate}
 \item
+\answer{
+This is similar to problem 4.a.3, so we can go about it the same way. 
+$$T(n) = 2T(\sqrt{n}) + 5$$
+$$T(n) = 2((2T(\sqrt{\sqrt{n}} + 5))) + 5$$
+Thus, we know from before that there will be a depth of $\log(\log(n)$ in the recursive tree, and so we can express $T(n)$ as
+$$T(n) = 2^{\log(\log(n)}T(2) + 5*\sum_{i=0}^{\log(logn))}2^i \in \theta(\log(n))$$
+}
 \begin{enumerate}[(i)]
 \item Consider the recurrence relation $T(n) = 2T(n/2) + n \log n$. We can't plug it directly into the Master theorem, so solve it by adding the size of each layer.
-
+\answer{
+From the recursion tree, we have the summation:
+$$$$
+}
 \textit{Hint: split up the $\log (n/(2^i))$ terms into $\log n - \log (2^i)$, and use the formula for arithmetic series.}
 
 \item A more general version of Master theorem, like the one on \href{https://en.wikipedia.org/wiki/Master_theorem}{Wikipedia}, incorporates this result. The case of the master theorem which applies to this problem is:
