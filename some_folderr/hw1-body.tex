@@ -250,7 +250,9 @@ kthElement(a, b, k)\\
 \tab \tab \tab \tab return kthElement(first half of a, b, k)\\
 \tab \tab \tab else \\
 \tab \tab \tab \tab return kthElement(a, first half of b, k)\\
-
+\textbf{Proof of Correctness} This is mostly explained in the main idea portion. The critical part is that at each stage we can halve one of the arrays based on the two medians and the value of k, as it can be proven that it is impossible for the kth element to be in that half. Shifting k when removing from the "front" (array A) guarantees that the index is maintained. Then, the recursive call takes care of the rest. When one list is depleted, then we can easily find the kth element in the remaining sorted list. \\
+\textbf{Running Time}$O(\log(n))$\\
+\textbf{Justification}There are two lists of size n. In the worst case, we must half each list $\log(n)$ times until one reaches size 0. This will take $2\log(n)$ steps.
 }
 
 \q{$\bigstar\bigstar\bigstar\bigstar\bigstar$}{Merged Median} \\
