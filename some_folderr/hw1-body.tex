@@ -95,11 +95,10 @@ $$\frac{n}{2}(\log(n) - \log(2)) \leq \log(n!)$$
 $$O(n\log(n)) \in O(\log(n!))$$
 $$f \in \Omega(g)$$
 }
-\vspace{2cm}
 
 \item Let $f(\cdot)$ be a function. Consider the equality
 \[\sum_{i=1}^{n}f(i)\ \in \ \Theta(f(n)),\]
-give a function $f_1$ such that the equality holds, and a function $f_2$ such that the equality does not hold.\\
+give a function $f_1$ such that the equality holds, and a function $f_2$ such that the equality does not hold.
 
 \answer{
 $$\sum_{i=1}^n2^n = 2^{n+1} \in \theta(2^n)$$
@@ -112,7 +111,12 @@ then either (1) there exists a constant $c>0$ so that
 $f(n) \in O(n^c)$, or (2) there exists a constant $\alpha>1$ so that
 $f(n) \in \Omega(\alpha^n)$.
 
-\answer{}
+\answer{
+Because the function maps natural numbers to natural numbers, there are only a number of possible options for the time complexity of $f$.
+$$f(n) \in \theta(1), \theta(n), \theta(n^c), \theta(c^n), \theta(n!), \theta(n^n)$$
+Then, all of these possibilities satisfy the claim. 
+$$f(n) = 1 \in O(n), f(n) = n \in O(n^2), f(n) = n^k \in O(n^{k}), f(n) = k^{n} \in \Omega(k^n), f(n) = n! \in \Omega(k^n), f(n) = n^n \in \Omega(k^n)$$
+}
   
 \end{enumerate}
 
@@ -155,16 +159,17 @@ $$T(n) = 2^{log(logn)}T(2)+3*\sum_{i=0}^{log(logn)} \in \theta(log(n))$$
 Solve the following recurrence relations and give a $\Theta$ bound for each of them.
 \begin{enumerate}[(a)]
 \item
-Using the Master theorem, where 
+
 \begin{enumerate}[(i)]
-\item $T(n) = 3T(n/4) + 4n^2$
+\item $T(n) = 3T(n/4) + 4n^2$\\
 \answer{
+Using the Master theorem, where
 $$a=3, b=4, d=2, d > \log_b(a)$$
 $$T(n) \in \theta(n^2)$$
 }
-\item $T(n) = 45T(n/3) + .1n^3$
+\item $T(n) = 45T(n/3) + .1n^3$\\
+\answer{	
 Using the Master theorem, where 
-\answer{
 $$a=45, b=3, d=3, d < \log_b(a)$$
 $$T(n) \in \theta(n^{\log_3(45)})$$
 }
@@ -180,11 +185,17 @@ $$T(n) = 2^{\log(\log(n)}T(2) + 5*\sum_{i=0}^{\log(logn))}2^i \in \theta(\log(n)
 }
 \begin{enumerate}[(i)]
 \item Consider the recurrence relation $T(n) = 2T(n/2) + n \log n$. We can't plug it directly into the Master theorem, so solve it by adding the size of each layer.
+\textit{Hint: split up the $\log (n/(2^i))$ terms into $\log n - \log (2^i)$, and use the formula for arithmetic series.}\\
 \answer{
 From the recursion tree, we have the summation:
-$$$$
+$$\sum_{i=0}^{log_2(n)}2^i\frac{n}{2^i}\log(\frac{n}{2^i})$$
+$$=n*\sum_{i=0}^{log_2(n)}(\log(n)-i\log(2))$$
+$$=n*\sum_{i=0}^{log_2(n)}\log(n) - n\log(2)\sum_{i=0}^{\log_2(n)}i$$
+$$=n(\log(n))^2-n\log(2)\frac{\log_2(n)(\log_2(n) + 1)}{2}$$
+$$T(n) \in \theta(n(\log(n))^2)$$
+
 }
-\textit{Hint: split up the $\log (n/(2^i))$ terms into $\log n - \log (2^i)$, and use the formula for arithmetic series.}
+
 
 \item A more general version of Master theorem, like the one on \href{https://en.wikipedia.org/wiki/Master_theorem}{Wikipedia}, incorporates this result. The case of the master theorem which applies to this problem is:
 
@@ -193,18 +204,54 @@ $$$$
 Use the general Master theorem to solve the following recurrence relation:
 
 $T(n) = 9T(n/3) + n^2 \log ^3 n$.
+
+\answer{
+Using the general Master theorem:
+$$a=9, b=3, c=2, k=3$$
+$$T(n)=\theta(n^2(\log(n))^4)$$
+}
 \end{enumerate} 
 \end{enumerate}
 
-\answer{}
+\clearpage
 
 \q{$\bigstar\bigstar\bigstar\bigstar$}{Two Sorted Arrays}
 
 You are given two sorted arrays, each of size $n$. Give as efficient an algorithm as possible to find the $k$-th smallest element in the union of the two arrays. What is the running time of your algorithm as a function of $k$ and $n$?
 {\em (You need to give a four-part solution for this problem.)}
 
-\answer{}
+\answer{\\ 
+\textbf{Main Idea: } In order to take advantage of both arrays being sorted, notice that when looking at the medians of the two arrays, as well as the index desired, then at any step we can eliminate half of one array. Say we have our 2n elements, as well as two arrays A and B. Then there are a number of cases.
+\begin{enumerate}
+\item 
+$k>n$, and median of A less than median of B. We can eliminate the lower half of A. And shift our k back by half of A in order to compensate. This is because if our index was in A, then it would have to be in the upper half. Suppose it was in the lower half. Then that means that there are $>\frac{n}{2}$ elements after it in the upper half of A. Furthermore, because the median of B is larger than that of A, then that means that there would also be $>\frac{n}{2}$ elements after it in the upper half of B. But this is impossible! It cannot be that there are both $>\frac{n}{2}$ elements greater than the kth element in both A and B, because that would mean $k>n$ is false. Thus, it must be valid to remove the lower half of A, as it is impossible for the kth element to be there. 
+\item 
+$k>n$, and median of A greater than median of B. With similar reasoning, eliminate the lower half of A and shift k back by half of A to compensate.
+\item 
+$k<n$, and median of A less median of B. With similar reasoning, eliminate the upper half of B. No need to shift k. 
+\item 
+$k<n$, and median of A greater than median of B. With similar reasoning, eliminate the upper half of A. No need to shift k. 
+\end{enumerate}
+\textbf{Pseudocode:} \\
+kthElement(a, b, k)\\
+\tab mid1 = middle element of first array\\
+\tab mid2 = middle element of the second array\\
+\tab if a has length 0\\
+\tab \tab return kth element of b\\
+\tab elif b has length 0\\
+\tab \tab return kth element of a\\
+\tab \tab if k is greater than sum of mid1 and mid 2\\
+\tab \tab \tab if a[mid1] greater than b[mid2]\\
+\tab \tab \tab \tab return kthElement(a, second half of b, k - mid2 - 1)\\
+\tab \tab \tab else \\
+\tab \tab \tab \tab return kthElement(second half of a, b, k - mid1 - 1)\\
+\tab \tab else\\
+\tab \tab \tab if a[mid1] greater than b[mid2]\\
+\tab \tab \tab \tab return kthElement(first half of a, b, k)\\
+\tab \tab \tab else \\
+\tab \tab \tab \tab return kthElement(a, first half of b, k)\\
 
+}
 
 \q{$\bigstar\bigstar\bigstar\bigstar\bigstar$}{Merged Median} \\
 Given $k$ sorted arrays of length $l$, design an efficient algorithm to finding the median element of all the $n=kl$ elements. Your algorithm should run  asymptotically faster than $O(n)$. Your answer from 5 may be helpful.
