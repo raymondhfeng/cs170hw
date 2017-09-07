@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6350 64-bit) (preloaded format=pdflatex 2017.8.30)  4 SEP 2017 21:13
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6350 64-bit) (preloaded format=pdflatex 2017.8.30)  6 SEP 2017 16:29
 entering extended mode
 **./hw1sol.tex
 (hw1sol.tex
@@ -928,40 +928,16 @@ Package amsmath Warning: Foreign command \over;
 LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <10.95> not available
 (Font)              Font shape `OT1/ptm/b/it' tried instead on input line 59.
 [2] [3]
-Underfull \hbox (badness 10000) in paragraph at lines 113--113
 
- []
+LaTeX Font Warning: Command \tiny invalid in math mode on input line 115.
 
-
-LaTeX Font Warning: Command \tiny invalid in math mode on input line 123.
-
-[4]
-Overfull \hbox (38.66922pt too wide) detected at line 136
-\OML/ztmcm/m/it/10.95 f\OT1/ztmcm/m/n/10.95 (\OML/ztmcm/m/it/10.95 n\OT1/ztmcm/
-m/n/10.95 ) = 1 \OMS/ztmcm/m/n/10.95 2 \OML/ztmcm/m/it/10.95 O\OT1/ztmcm/m/n/10
-.95 (\OML/ztmcm/m/it/10.95 n\OT1/ztmcm/m/n/10.95 )\OML/ztmcm/m/it/10.95 ; f\OT1
-/ztmcm/m/n/10.95 (\OML/ztmcm/m/it/10.95 n\OT1/ztmcm/m/n/10.95 ) = \OML/ztmcm/m/
-it/10.95 n \OMS/ztmcm/m/n/10.95 2 \OML/ztmcm/m/it/10.95 O\OT1/ztmcm/m/n/10.95 (
-\OML/ztmcm/m/it/10.95 n[]\OT1/ztmcm/m/n/10.95 )\OML/ztmcm/m/it/10.95 ; f\OT1/zt
-mcm/m/n/10.95 (\OML/ztmcm/m/it/10.95 n\OT1/ztmcm/m/n/10.95 ) = \OML/ztmcm/m/it/
-10.95 n[] \OMS/ztmcm/m/n/10.95 2 \OML/ztmcm/m/it/10.95 O\OT1/ztmcm/m/n/10.95 (\
-OML/ztmcm/m/it/10.95 n[]\OT1/ztmcm/m/n/10.95 )\OML/ztmcm/m/it/10.95 ; f\OT1/ztm
-cm/m/n/10.95 (\OML/ztmcm/m/it/10.95 n\OT1/ztmcm/m/n/10.95 ) = \OML/ztmcm/m/it/1
-0.95 k[] \OMS/ztmcm/m/n/10.95 2 \OT1/ztmcm/m/n/10.95 
-(\OML/ztmcm/m/it/10.95 k[]\OT1/ztmcm/m/n/10.95 )\OML/ztmcm/m/it/10.95 ; f\OT1/z
-tmcm/m/n/10.95 (\OML/ztmcm/m/it/10.95 n\OT1/ztmcm/m/n/10.95 ) = \OML/ztmcm/m/it
-/10.95 n\OT1/ztmcm/m/n/10.95 ! \OMS/ztmcm/m/n/10.95 2 \OT1/ztmcm/m/n/10.95 
-(\OML/ztmcm/m/it/10.95 k[]\OT1/ztmcm/m/n/10.95 )\OML/ztmcm/m/it/10.95 ; f\OT1/z
-tmcm/m/n/10.95 (\OML/ztmcm/m/it/10.95 n\OT1/ztmcm/m/n/10.95 ) = \OML/ztmcm/m/it
-/10.95 n[] \OMS/ztmcm/m/n/10.95 2 \OT1/ztmcm/m/n/10.95 
-(\OML/ztmcm/m/it/10.95 k[]\OT1/ztmcm/m/n/10.95 )
- []
-
-[5] [6] [7] [8
+[4] [5] [6] [7] [8
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 288--289
-
+Overfull \hbox (35.60242pt too wide) in paragraph at lines 325--325
+\OT1/ptm/m/n/10.95 Loop in-vari-ant: $\OML/ztmcm/m/it/10.95 k[] \OT1/ztmcm/m/n/
+10.95 := []\OML/ztmcm/m/it/10.95 ; R[] \OT1/ztmcm/m/n/10.95 := []$\OT1/ptm/m/n/
+10.95 . 
  []
 
 [9])
@@ -975,29 +951,28 @@ Package rerunfilecheck Info: File `hw1sol.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 18402 strings out of 493323
- 320764 string characters out of 3139060
+ 18406 strings out of 493323
+ 320798 string characters out of 3139060
  407908 words of memory out of 3000000
- 21658 multiletter control sequences out of 15000+200000
- 558831 words of font info for 85 fonts, out of 3000000 for 9000
+ 21659 multiletter control sequences out of 15000+200000
+ 559338 words of font info for 86 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 39i,15n,32p,10418b,601s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 39i,15n,32p,10418b,584s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/base/8r.enc}<C:/Program Files/Mi
 KTeX 2.9/fonts/type1/public/amsfonts/cm/cmdunh10.pfb><C:/Program Files/MiKTeX 2
 .9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Program Files/MiKTeX 2.9/fonts
 /type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/p
 ublic/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/ams
-fonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/la
-txfont/lasy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/symb
-ols/msam10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols
-/msbm10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/symbol/usyr.pfb><C:/Pr
-ogram Files/MiKTeX 2.9/fonts/type1/urw/symbol/usyr.pfb><C:/Program Files/MiKTeX
- 2.9/fonts/type1/urw/times/utmb8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/
-urw/times/utmbi8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmr8a
-.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb>
-Output written on hw1sol.pdf (10 pages, 165150 bytes).
+fonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/sy
+mbols/msam10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/symbo
+ls/msbm10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/symbol/usyr.pfb><C:/
+Program Files/MiKTeX 2.9/fonts/type1/urw/symbol/usyr.pfb><C:/Program Files/MiKT
+eX 2.9/fonts/type1/urw/times/utmb8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type
+1/urw/times/utmbi8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmr
+8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb>
+Output written on hw1sol.pdf (10 pages, 159501 bytes).
 PDF statistics:
  163 PDF objects out of 1000 (max. 8388607)
- 54 named destinations out of 1000 (max. 500000)
+ 57 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

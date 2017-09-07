@@ -89,14 +89,6 @@ $$s\frac{\ln(e)}{\ln(s)} \in \Omega(\ln(s))$$
 This is true because
 $$\lim_{s \to \infty}\frac{s}{(\ln(s))^2}=\infty$$
 $$f \in \Omega(g)$$
-(Alternate Solution)\\
-For large n.\\
-$$2\log(\log(\log(n))) \leq \log(\log(n))$$ 
-$$\Rightarrow (\log(\log(n)))^2 \leq \log(n)$$
-$$\Rightarrow \log((\log(n))^{\log(\log(n))}) \leq \log(n)$$
-$$\Rightarrow (\log(n))^{\log(\log(n))} \leq n$$
-$$\Rightarrow g \leq f$$
-$$f \in \Omega(g)$$
 vi. 
 I omit the calculus.
 $$\lim_{n\to\infty}\frac{f}{g} = 1 \Rightarrow f \in \theta(g)$$
@@ -128,11 +120,19 @@ $f(n) \in O(n^c)$, or (2) there exists a constant $\alpha>1$ so that
 $f(n) \in \Omega(\alpha^n)$.
 
 \answer{
-Because the function maps natural numbers to natural numbers, there are only a number of possible options for the time complexity of $f$.
-$$f(n) \in \theta(1), \theta(n), \theta(n^c), \theta(c^n), \theta(n!), \theta(n^n)$$
-Then, all of these possibilities satisfy the claim. 
-$$f(n) = 1 \in O(n), f(n) = n \in O(n^2), f(n) = n^k \in O(n^{k}), f(n) = k^{n} \in \Omega(k^n), f(n) = n! \in \Omega(k^n), f(n) = n^n \in \Omega(k^n)$$
-Proved. \qed
+False. There is a counterexample.
+$$f(n)=\ceil{2^{\sqrt{n}}}$$
+First.
+$$2^{\sqrt{n}} \in \Omega(n^c))$$
+$$2^{\sqrt{n}} \in \Omega(2^{\log_2(n^c)})$$
+$$2^{\sqrt{n}} \in \Omega(2^{c\log_2(n)})$$
+$$\sqrt{n} \in \Omega(c\log_2(n))$$
+Also.
+$$2^{\sqrt{n}} \in O(c^n))$$
+$$2^{\sqrt{n}} \in O(2^{\log_2(c^n)}))$$
+$$2^{\sqrt{n}} \in O(2^{n\log_2(c)}))$$
+$$\sqrt{n} \in \in O(n\log_2(c))$$
+$$f \in \Omega(n^c) \land f \in O(\alpha^n)$$
 }
   
 \end{enumerate}
@@ -157,6 +157,10 @@ $$T(n) \in \theta(n^{log_{b}(a)}) = \theta(n)$$
 \answer{
 Each call of the function on $n$ recursively calls itself on $n-1$, and then does $c^n$ work. The call $T(1)$ returns 1, and so all the work can be seen as the sum of $c^n$ from 2 to $n$. 
 $$\sum_{i=2}^{n}c^i=\frac{a_1(1-r^n)}{1-r}=\frac{c^2(1-c^{n-1})}{1-c} \in \theta(c^n)$$   
+Because we know that $c>0$, we can split this into cases:
+$$c \in(0,1) \Rightarrow T(n) \in \theta(1)$$
+$$c=1 \Rightarrow T(n) \in \theta(n)$$
+$$c>1 \Rightarrow T(n) \in \theta(c^n)$$
 }
 
 \item $T(n) = 2T(\sqrt{n}) + 3$, and $T(2) = 3$.
@@ -196,7 +200,7 @@ $$T(n) \in \theta(n^{\log_3(45)})$$
 	$$T(n) = 2T(\sqrt{n}) + 5$$
 	$$T(n) = 2((2T(\sqrt{\sqrt{n}} + 5))) + 5$$
 	Thus, we know from before that there will be a depth of $\log(\log(n))$ in the recursive tree, and so we can express $T(n)$ as
-	$$T(n) = 2^{\log(\log(n)}T(2) + 5*\sum_{i=0}^{\log(logn))}2^i \in \theta(\log(n))$$
+	$$T(n) = 2^{\log(\log(n))}T(2) + 5*\sum_{i=0}^{\log(logn))}2^i \in \theta(\log(n))$$
 }
 \end{enumerate}
 \item
@@ -280,9 +284,7 @@ One array of length 2: The other of length 0. This automatically goes to the bas
 \textbf{Inductive Hypothesis:} If we have total number of elements $t'$ where our algorithm is known to work, then our algorithm must also work for total number of elements $2t'$.
 \\
 \textbf{Inductive Step:} We do not assume that our proposed $2t'$ elements are split half and half, because this may not necessarily be the case somewhere along the execution of our algorithm. All we assume is that the $2t'$ elements are somehow split between two arrays. Using our trick of eliminating half of one of the two arrays, we can keep doing this until we reach $t'$ or less elements, where in which the problem is solved because of the inductive hypothesis. However, this may not be the case, as one of the arrays may be exhausted before the total number of elements between both arrays goes below $t'$. But one of the arrays are exhausted, our problem is also solved because the remaining array is in sorted order and can easily be indexed into for the desired element. 
- \\ \\
-(Alternative explanation)\\
-This is mostly explained in the main idea portion. The critical part is that at each stage we can halve one of the arrays based on the two medians and the value of k, as it can be proven that it is impossible for the kth element to be in that half. Shifting k when removing from the "front" (array A) guarantees that the index is maintained. Then, the recursive call takes care of the rest. When one list is depleted, then we can easily find the kth element in the remaining sorted list. \\
+ \\ 
 \textbf{Running Time}$O(\log(n))$\\
 \textbf{Justification}There are two lists of size n. In the worst case, we must half each list $\log(n)$ times until one reaches size 0. This will take $2\log(n)$ steps.
 }
@@ -306,7 +308,20 @@ mergedMedian(listOfArrays, medianIndex) \\
 \tab Modify median index by subtracting by number of elements discarded in lower half. \\
 \tab Call mergedMedian(modifiedListOfArrays, modifiedMedianIndex) \\
 \textbf{Proof of Correctness} \\
-The reason that the halving of the two arrays is valid is because at any iteration, we know that the median cannot be in the lower half of the smallest median array, and the upper half of the largest median array. This is because if the lower half of the smallest median array contained the median of the union, then there would be a contradiction, as there are more than $n/2$ elements larger than the median. Symmetrically, the median of the union cannot be within the upper half of the largest median array. This is because if that were the case then there would be a contradiction, as there are more than $n/2$ elements less than the median. Thus, removing the two halves is a valid move. 
+Loop invariant: $k_c:=\textbf{Desired index at current frame}, R_c:=\textbf{Total elements removed from left at current frame}$. 
+$$\frac{n}{2}=k_c+R_c$$
+\begin{enumerate}
+	\item 
+	The loop invariant is trivially true at the first frame. 
+	\item 
+	If the loop invariant is correct at frame $i$, then at frame $i+1$ there must have been some amount of items removed from the left. That amount is added to $R_c$ and removed from $k_c$, maintaining the loop invariant. 
+	\item 
+	If the invariant holds at bottom frame of my recursion, then I know that whatever I index to must me the median of the union of the arrays. This is because there are a total of $R_c$ smaller elements removed, and so $k_c$, if indexed in the right array, must be the index of the median.
+\end{enumerate}
+\textbf{Running Time} \\
+$O(k\log(l))$\\
+\textbf{Justification}\\
+At the very worst, we halve all of the $k$ arrays $\log(l)$ times. However, if we also consider the fact that we need to calculate the max and min median of the k arrays at each step, we could do this efficiently by using two priority queues to contain all arrays and their medians, one for max one for min. After every step, we have to update the two arrays that were modified with their new medians, taking $\log(k)$ time. This leads to a runtime of $O(k\log(k)\log(l))$ 
 }
 
 
