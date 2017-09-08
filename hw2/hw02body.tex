@@ -188,12 +188,25 @@ Design an efficient algorithm that determines, given $A$ and $t$, whether your f
 \textit{Hint: Think about properties of exponents.}\\
 \answer{\\
 \textbf{Main Idea}\\
-The main idea is similar to the main idea of binary representation. When translating a number to binary, after inserting the largest power of 2, the next power of two that can be inserted MUST be at most one less than the previously inserted power of two. We can modify this for this problem somewhat simply.
+Represent array A as a degree at most $170n$ polynomial. 
+$$p(x)=a_0+a_1x^1+a_2x^2+...+a_{170n}x^{170n}, a_0=1$$ 
+Have the coefficient $a_i$ is either 1 or 0 depending on if that element exists in $A$. Then, we can simply take this polynomial to the fourth power, and check to see if the result has a non-zero coefficient for the $n^t$ term, using FFT to do the heavy lifting of multiplying the polynomials.\\
 \textbf{Pseudocode}\\
-exactChange(COST, DENOMS)\\
-\tab sort DENOMS\\
-\tab convert all elements in denoms to exponent with base 2.
-\tab $i=\text{Largest index of denoms that fits in cost}$
+exactChange(DENOMS, COST)\\
+\tab $\text{denomTuple}=\text{Coefficient representation of degree at most 170n polynomial of the form}\sum_{i=0}^{170n}a_ix^{A[i]}$\\
+\tab $\text{valueDenomTuple}=\text{FFT evaluation performed on denomTuple}$\\
+\tab Take the fourth power of each element in valueDenomTuple\\
+\tab $\text{resultTuple}=\text{FFT interpolation on valueDenomTuple}$ \\
+\tab if (resultTuple has nonzero coefficient for the $x^t$ term) \\
+\tab \tab return true\\
+\tab else \\
+\tab \tab return false\\
+\textbf{Proof of Correctness}\\
+After the first squaring of $p(x)$, we have all the possible values that are possible with two coins of any two denominations. This is because of the nature of polynomial multiplication. Because the $x^c$ term represents a coin value of $c$, when multiplied with say $x^d$, we have $x^cx^d=x^{c+d}$, which gives us a term that corresponds to a value $c+d$ coin, as desired. Each term in the polynomial is multiplied with each of the other terms in the polynomial, including itself. The result must then be all the possible sums of two coins from the denomination list. Because we require four coins, we take the fourth power of $p(x)$.\\
+\textbf{Running Time}\\
+$O(n\log(n))$\\
+\textbf{Justification}\\
+Converting A to the coefficient representation of $p(x)$ takes $n$ time. Using FFT to evaluate a degree $170n$ polynomial takes time $170n\log(170n)$. However, we want to evaluate $p(x)$ at $4(170n)+1$ points, because we know that our result is of at most degree $680n$. This takes $680n\log(680n)$. Then, determining whether our desired term is in the result takes $n$ time. $O(2n+680n\log(680n)) \in O(n\log(n))$.
 }
 
 
@@ -225,7 +238,17 @@ find all such indices $i$.
 \begin{qparts}
 \item Describe an $O(mn)$ time algorithm for this string matching problem.
 Just show the pseudocode; you don't need to give a proof of correctness
-or show the running time.
+or show the running time.\\
+\answer{\\
+	\textbf{Pseudocode}\\
+	stringMatch(s,t,k)\\
+	\tab $\text{result}=[]$\\
+	\tab $\text{tCounter}=0$\\
+	\tab while($\text{tCounter}<\text{len(t)}-\text{len(s)}$)\\
+	\tab \tab if length $s$ array starting at tCounter has $\leq k$ errors.\\
+	\tab \tab \tab append tCounter to result\\
+	\tab \tab $\text{tCounter}+=1$
+}
 
 \item Let's work towards a faster algorithm.
 Suggest a way to choose polynomials $p(x),q(x)$ of degree $m-1,n-1$,
