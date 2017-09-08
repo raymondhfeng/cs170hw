@@ -219,7 +219,30 @@ Consider an $n\times n$ matrix $M$ with distinct integer entries. Call an entry 
 
 Suppose that $M$ is guaranteed to have exactly one local maximum and that every column of $M$, when viewed as an array, contains exactly one local maximum. Show that the local maximum of $M$ can be found in $O(\log^2 n)$ time. 
 
-\text{(Please give a four part solution for this problem.)}
+\text{(Please give a four part solution for this problem.)}\\
+\answer{\\
+\textbf{Main Idea}\\
+Notice that if there is a guarantee that there is only one local maximum for every column of M, then that local maximum is also the global maximum for that column. After finding the local maximum, we need to check whether this is a peak. If that is not the case we can split the problem by eliminating the half of the array.\\
+\textbf{Pseudocode}\\
+findPeak(M)\\
+\tab if M only has one column \\
+\tab \tab return local max of that column\\
+\tab $i=\frac{\text{width(M)}}{2}$\\
+\tab $\text{ithCol}=\text{ith column of M}$\\
+\tab $\text{localMaxIndex}=\text{index of local maximum in ithCol}$\\
+\tab if ($\text{M[localMaxIndex][i]}<\text{M[localMaxIndex][i-1]}$)\\
+\tab \tab return findPeak(left half of M)\\
+\tab if ($\text{M[localMaxIndex][i]}<\text{M[localMaxIndex][i+1]}$)\\
+\tab \tab return findPeak(right half of M)\\
+\tab else \\
+\tab \tab return M[localMaxIndex][i]\\
+\textbf{Proof of Correctness}\\
+We can cut the problem in half once we know the relationship between a columns local max and its left and right neighbors. Suppose we have a local max $(i,j)$. Then suppose that $(i,j+1)>(i,j)$. Then, we know that the peak must be to the right of column $j$. Then, if $(i,j+1)$ is not the local maximum of column $j+1$, we go to the local maximum, say $(i',j+1)$. Either this is the peak, or we look at column $j+2$. Eventually, we will either have to see a peak, or reach the end. Because the point before the end $(i'',n-1)$ must have been less than $(i'',n)$, either $(i'',n)$ is the peak, or the local max of column $n$ must be the peak. The latter follows because the peak of column $n$ must be larger than all the elements in column $n-1$, because the local max of column $n-1$, $(i'',n-1)$ is less than $(i'',n)$. Because our peak is unique, and we showed that it must be in the right half, we can disregard the left half. A symmetric argument for the left side where $(i,j+1)<(i,j)$ must follow.\\
+\textbf{Running Time}\\
+$O((\log(n))^2)$\\
+\textbf{Justification}\\
+It takes $\log(n)$ time to find the local max of a column. We must do this every time we cut the matrix in half. The matrix can be cut in half in the worst case $\log(n)$ times. Thus the algorithm is $\in O((\log(n))^2)$.
+}
 
 
 
